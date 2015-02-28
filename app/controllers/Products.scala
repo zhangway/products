@@ -2,7 +2,7 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import models.Product
 import play.api.data.Form
-import play.api.data.Forms.{mapping, longNumber, nonEmptyText}
+import play.api.data.Forms._
 import play.api.i18n.Messages
 import play.api.mvc.Flash
 
@@ -12,7 +12,7 @@ object Products extends Controller {
       "ean" -> longNumber.verifying(
         "validation.ean.duplicate", Product.findByEan(_).isEmpty),
       "name" -> nonEmptyText,
-      "description" -> nonEmptyText
+      "description" -> optional(text)
     )(Product.apply)(Product.unapply)
   )
   
