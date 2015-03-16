@@ -27,9 +27,10 @@ object Products extends Controller {
     val newProductForm = productForm.bindFromRequest()
     newProductForm.fold(
       hasErrors = { form =>
-       Redirect(routes.Products.newProduct()).
-         flashing(Flash(form.data) +
-           ("error" -> Messages("validation.errors")))
+        BadRequest(views.html.products.editProduct(form))
+       //Redirect(routes.Products.newProduct()).
+         //flashing(Flash(form.data) +
+           //("error" -> Messages("validation.errors")))
       },
       success = { newProduct =>
         Product.add(newProduct)
@@ -46,7 +47,11 @@ object Products extends Controller {
   
   def show(ean: Long) = Action { implicit request =>
     Product.findByEan(ean).map { product => 
-      Ok(views.html.products.details(product))}.getOrElse(NotFound)  
+      Ok(views.html.products.details(product))}.getOrElse(NotImplemented)  
+  }
+  
+  def hello = Action { request =>
+    NotImplemented
   }
 
 }

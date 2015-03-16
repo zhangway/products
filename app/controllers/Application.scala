@@ -8,5 +8,9 @@ object Application extends Controller {
   def index = Action {
     Redirect(routes.Products.list())
   }
+  
+  def hello = Action { request =>
+    NotImplemented
+  }
 
 }
