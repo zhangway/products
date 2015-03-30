@@ -5,12 +5,9 @@ import play.api.mvc._
 
 object Application extends Controller {
 
-  def index = Action {
-    Redirect(routes.Products.list())
-  }
-  
-  def hello = Action { request =>
-    NotImplemented
+  def index = Action { implicit request =>
+    
+    Ok(views.html.index("Catalog"))
   }
 
 }

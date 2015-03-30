@@ -1,0 +1,67 @@
+@* persolist Template File *@
+@(personList: List[Person])
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/css/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/css/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("DataTables-1.10.5/media/css/jquery.dataTables.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("DataTables-1.10.5/media/js/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("DataTables-1.10.5/media/js/jquery.dataTables.js")" type="text/javascript"></script>
+    </head>
+    <body>
+    	
+			
+			<div class="container">
+			    <script>
+				    $(document).ready(function() {
+				         			$('#example').DataTable( {
+							        	"columns": [
+							        	            { "data": "id" },
+							        	            { "data": "name" },
+							        	            { "data": "birthday" }
+							        	            
+							        	            
+							        	          ],
+							        	"ajax": {
+							                "url": "getpersonlist",
+							                "dataSrc": "data",
+							                "dataType": "json",
+							                "cache": false,
+							                "contentType": "application/json; charset=utf-8"
+							                
+							            },
+							            "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {                
+							            	$(nRow).on('click', function() {
+							            		  alert('id:' + aData.id);
+							            	      console.log('Row Clicked. Look I have access to all params, thank You closures.', this, aData, iDisplayIndex, iDisplayIndexFull);
+							            	      document.location.href = "/persondetail/" + aData.id;
+							            	});
+							            	 $('td', nRow).on('click', function() {
+								            	  
+							            	      console.log('Col Clicked.', this, aData, iDisplayIndex, iDisplayIndexFull);
+							            	    });
+							            },
+							        });
+				       
+				    } );
+			    </script>
+				<table id="example" class="display">
+					 <thead>
+			            <tr>
+			                <th>Id</th>
+			                <th>Name</th>
+			                <th>Birthday</th>
+			                
+			            </tr>
+        			</thead>
+				</table>
+				
+        	</div>
+		
+    </body>
+</html>

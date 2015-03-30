@@ -1,0 +1,37 @@
+@* test Template File *@
+@(s: String)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/css/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/css/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("DataTables-1.10.5/media/css/jquery.dataTables.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("DataTables-1.10.5/media/js/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("DataTables-1.10.5/media/js/jquery.dataTables.js")" type="text/javascript"></script>
+    </head>
+    <body>
+    	
+			
+			<div class="container">
+			    <p>@s</p>
+			    
+				<table id="example" class="display">			
+   
+				</table>
+				<script>
+				    $(document).ready(function() {
+				        $('#example').DataTable({
+					    	serverSide: true,
+					    	ajax: '/getpersonlist' 
+						});
+				    } );
+			    </script>
+        	</div>
+		
+    </body>
+</html>
+

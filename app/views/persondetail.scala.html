@@ -1,0 +1,15 @@
+@* details Template File *@
+@(person: Person)(implicit flash: Flash,lang: Lang)
+
+@main("detail") {
+	<dl class="dl-horizontal">
+		<dt>Id:</dt>
+		<dd>@person.id</dd>
+		<dt>Name:</dt>
+		<dd>@person.name</dd>
+		<dt>Age:</dt>
+		<dd>@person.age</dd>
+		<dt>Birthday:</dt>
+		<dd>@person.birthday</dd>
+	</dl>
+}

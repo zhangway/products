@@ -10,5 +10,8 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-  ws
+  ws,
+  "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 )
+
+
